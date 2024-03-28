@@ -10,12 +10,20 @@ const initialItems: itemInter[] = [];
 
 function App() {
   const [list, setList] = useState(initialItems);
+  const numPacked = list.filter((item) => item.packed).length;
+  const numItems = list.length;
+  const percentage = Math.round((numPacked * 100) / numItems);
+
   return (
     <div className="app">
       <Logo />
       <Form list={list} setList={setList} />
       <PackingList list={list} setList={setList} />
-      <Stats />
+      <Stats
+        numItems={numItems}
+        numPacked={numPacked}
+        percentage={percentage}
+      />
     </div>
   );
 }
